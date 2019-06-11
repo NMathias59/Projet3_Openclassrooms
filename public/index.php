@@ -6,3 +6,4 @@ use Core\Router\Router;
 
 $router = new Router();
 $router->run($_GET['uri'] ?? 'homepage');
+
