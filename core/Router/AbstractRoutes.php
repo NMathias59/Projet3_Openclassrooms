@@ -1,13 +1,13 @@
 <?php
 
 
-namespace core\Router;
+namespace Core\Router;
 
 
-class AbstractRoutes
+abstract class AbstractRoutes
 {
     /**
-     * @return array
+     * @return Route[] Liste des routes
      */
-    abstract public function getRoutes(): array ;
+    abstract public function getRoutes(): array;
 }

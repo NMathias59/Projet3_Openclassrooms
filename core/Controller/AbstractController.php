@@ -1,6 +1,6 @@
 <?php
 
-namespace core\controller;
+namespace Core\Controller;
 
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
@@ -10,9 +10,6 @@ abstract class AbstractController
 {
     private static $twig;
 
-    /**
-     * AbstractController constructor.
-     */
     public function __construct()
     {
         if (self::$twig === null) {
@@ -20,13 +17,12 @@ abstract class AbstractController
             self::$twig = new Environment($loader, [
                 'debug' => true,
             ]);
-            self::$twig->addExtention(new DebugExtension());
+            self::$twig->addExtension(new DebugExtension());
         }
     }
 
     public function render(string $name, array $context = [])
     {
-        echo self::$twig->reder($name, $context);
+        echo self::$twig->render($name, $context);
     }
-
 }

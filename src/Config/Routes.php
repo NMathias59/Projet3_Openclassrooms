@@ -9,6 +9,9 @@ use  Core\Router\Route;
 
 class Routes extends AbstractRoutes
 {
+    /**
+     * @return Route[] Liste des routes
+     */
     public function getRoutes(): array
     {
 

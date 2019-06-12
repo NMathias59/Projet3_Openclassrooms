@@ -1,7 +1,7 @@
 <?php
 
 
-namespace core\Router;
+namespace Core\Router;
 
 
 class Route
@@ -10,14 +10,18 @@ class Route
     private $controller;
     private $action;
 
-
+    /**
+     * Route constructor.
+     * @param $uri
+     * @param $controller
+     * @param $action
+     */
     public function __construct($uri, $controller, $action)
     {
         $this->uri = $uri;
         $this->controller = $controller;
         $this->action = $action;
     }
-
 
     /**
      * @return mixed
