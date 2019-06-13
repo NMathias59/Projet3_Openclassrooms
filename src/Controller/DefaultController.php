@@ -13,4 +13,9 @@ class DefaultController extends AbstractController
         $this->render('Default/homepage.html.twig');
     }
 
+    public function autobioAction()
+    {
+        $this->render('Default/autobiographie.html.twig');
+    }
+
 }
