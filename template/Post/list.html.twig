@@ -14,26 +14,25 @@
                 <li class="breadcrumb-item active">Chapitres</li>
             </ol>
             <div class="row">
-                <?php foreach ($posts as $post) {
-                ?>
 
                 <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
                     <div class="card h-100">
                         <div class="card-body">
                             <h4 class="card-title">
-                                {% for listChapter in chapters %}
-                                <li><a href="post"> {{ listChapter.name }} </a></li>
-                                <!--<a href="post"><?= $post->getName(); ?></a> -->
+                                {% for post in posts %}
+
+                                <li><a href="#"> {{ post.name }} </a></li>
+                                {#<a href="post"><?= $post->getName(); ?></a>#}
                             </h4>
-                            <!--<p class="card-text"><?= $post->getContent(); ?></p>-->
+                            <li><a href="#"> {{ post.content }} </a></li>
+{#                            <p class="card-text"><?= $post->getContent(); ?></p>-->#}
                                 {% endfor %}
                             <button type="button" class="btn btn-primary">voir plus</button>
                         </div>
                     </div>
                 </div>
 
-                <?php
-            } ?></div>
+            </div>
 
             <!-- Pagination -->
             <ul class="pagination justify-content-center">

@@ -22,7 +22,7 @@ class MessageManager extends Manager
         return new Message($data);
     }
 
-    public function getMessage1()
+    public function listMessages()
     {
         $query = self:: $dataBase->prepare('SELECT * FROM `message` ORDER BY `createdAt`');
         $query->execute();
@@ -32,9 +32,4 @@ class MessageManager extends Manager
         return $this->hydrate($tabData);
     }
 
-    public function deleteTheMessage()
-    {
-        $req->self::$dataBase->prepare('DELETE FROM `message` WHERE `id` = ?');
-        $req->execute(array($_POST['message']));
-    }
 }
