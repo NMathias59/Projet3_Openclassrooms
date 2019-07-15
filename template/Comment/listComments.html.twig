@@ -1,16 +1,18 @@
-
 {% extends "baseadministration.html.twig" %}
+
 {% block body %}
 
 <body id="page-top">
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="administration">Administration :</a>
+    <a class="navbar-brand mr-1" href="index.html">Administration :</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
     </button>
+
+
 
 
     <!-- Navbar Search -->
@@ -19,10 +21,10 @@
     <ul class="navbar-nav ml-auto ml-md-12">
 
         <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>
+
 
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -68,50 +70,87 @@
                 </li>
                 <!-- <li class="breadcrumb-item active">Acceuil</li> -->
             </ol>
-            <!-- DataTables Example -->
 
+            <!-- DataTables Example -->
             <div class="card mb-3">
                 <div class="card-header">
-                    <i class="fas fa-table"></i> Liste des messages
-                </div>
+                    <i class="fas fa-table"></i> Liste des messages</div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <?php foreach ($posts as $post) {
-                            ?>
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
-                                <th>Titre:</th>
-                                <th>Date:</th>
-                                <th>Actions:</th>
+                                <th>NOM</th>
+                                <th>Date</th>
+                                <th>Post</th>
+                                <th>Commentaire</th>
                             </tr>
                             </thead>
-                            {% for post in posts %}
                             <tbody>
                             <tr>
-                                <td>{{ post.name }}</td>
-{#                                <td>    <?= $post->getName(); ?> </td>#}
-                                <td> {{ post.createdAt }}  </td>
-{#                                <td>    <?= $post->getCreatedAt(); ?> </td>#}
+                                <td>yolodu59</td>
+                                <td>22/11/18</td>
+                                <td>billet simple pour l'alaska ChapV</td>
+                                <td>super chapitre continue comme ça !</td>
                                 <td>
-                                    <a href="#"><button type="buton" class="btn btn-primary" >Lire</button></a>
-                                    <a href="#"><button type="buton" class="btn btn-success" >Editer</button></a>
-                                    <a href="#"><button type="buton" class="btn btn-danger" >Supprimer</button></a>
+                                    <button type="button" class="btn btn-danger">Supprimer
                                 </td>
                             </tr>
 
                             </tbody>
-                            {% endfor %}
                         </table>
                     </div>
                 </div>
-
+                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
 
         </div>
     </div>
+    <!-- /.container-fluid -->
+
+    <!-- Sticky Footer -->
+    <footer class="sticky-footer">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright © Your Website 2018</span>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
 
 
 
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+
+
+
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 

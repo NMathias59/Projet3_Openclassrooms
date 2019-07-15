@@ -47,4 +47,18 @@ class PostManager extends Manager
 
         $post->setId(self::$dataBase->lastInsertId());
     }
+
+    /**
+     * @return Post[] Liste des 6 dernier Posts pour l'acceuil.
+     */
+
+    public function getPosts()
+    {
+        $query = self:: $dataBase->prepare('SELECT * FROM `post` ORDER BY `created_at` DESC LIMIT 0, 6');
+        $query->execute();
+
+        $tabData = $query->fetchAll();
+
+        return $this->hydrate($tabData);
+    }
 }

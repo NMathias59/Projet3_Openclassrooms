@@ -18,6 +18,7 @@ abstract class AbstractController
                 'debug' => true,
             ]);
             self::$twig->addExtension(new DebugExtension());
+            self::$twig->addExtension(new \Twig_Extensions_Extension_Text());
         }
     }
 

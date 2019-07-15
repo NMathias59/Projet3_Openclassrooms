@@ -17,6 +17,15 @@ class PostController extends AbstractController
         $this->render('Default/homepage.html.twig');
     }
 
+    //Afficher les posts sur la pge d'acceuil
+    //------------------------------------------
+    public function homePageAction()
+    {
+        $postManager = new PostManager();
+        $posts = $postManager->getPosts();
+        $this->render('Default/homepage.html.twig', ['posts' => $posts]);
+    }
+
     //Afficher les post sur la page list.html.twig:
     //------------------------------------------
     public function listAction()

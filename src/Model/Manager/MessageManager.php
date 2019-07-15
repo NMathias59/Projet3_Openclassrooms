@@ -32,4 +32,9 @@ class MessageManager extends Manager
         return $this->hydrate($tabData);
     }
 
+    public function sendMessange()
+    {
+
+    }
+
 }

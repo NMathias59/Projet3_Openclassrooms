@@ -1,35 +1,94 @@
+{% extends "base.html.twig" %}
 
 {% block body %}
 
-    <h1> Voila est la home page </h1>
 
-        <h2>Acceuil : </h2>
 
-    <a href="?uri=autobiographie";>Autobiographie:</a>
-    <br>
-    <br>
-    <br>
-    <a href="?uri=chapitres">Chapitres :</a>
-    <br>
-    <br>
-    <br>
-    <a href="?uri=connection">Connection:</a>
-    <br>
-    <br>
-    <br>
-    <a href="?uri=administration">administration:</a>
-    <br>
-    <br>
-    <br>
-    <a href="?uri=messages">Messages:</a>
-    <br>
-    <br>
-    <br>
-    <a href="?uri=chapitresAdmin">Liste chapitres:</a>
-    <br>
-    <br>
-    <br>
-    <a href="?uri=newPost">Nouveau Chapitre:</a>
+
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">ACCEUIL </h1>
+    <div class="row">
+        {% for post in posts %}
+
+        <div class="col-lg-6 portfolio-item">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title"><a>{{ post.name }}</a></h4>
+                    <span> {{ post.createdAt }} </span>
+                    <br/>
+                    <br/>
+                    <p class="card-text">{{ post.content }}</p>
+                    <button type="button" class="btn btn-primary">lire la suite</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div>
+
+
+            <div class="row">
+                <div>
+                    <h3>{{ post.name }}
+                    </h3>
+                    <span>{{ post.createdAt }}</span>
+                    <p>{{ post.content }}</p>
+                    <a class="btn btn-primary" href="#">Lire la suite <span
+                                class="glyphicon glyphicon-chevron-right"></span> </a>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+    {#    <h1> Voila est la home page </h1>#}
+
+    {#        <h2>Acceuil : </h2>#}
+
+    {#    <a href="?uri=autobiographie";>Autobiographie:</a>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <a href="?uri=chapitres">Chapitres :</a>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <a href="?uri=contact">Contact :</a>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <a href="?uri=connection">Connection:</a>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <a href="?uri=administration">administration:</a>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <a href="?uri=messages">Messages:</a>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <a href="?uri=chapitresAdmin">Liste chapitres:</a>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <a href="?uri=newPost">Nouveau Chapitre:</a>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <a href="?uri=listcomment">Liste des commentaires:</a>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <a href="?uri=error404">Error 404:</a>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <a href="?uri=error504">Error504:</a>#}
+    {#    <br>#}
+    {#    <br>#}
+    {#    <br>#}
 
 
 

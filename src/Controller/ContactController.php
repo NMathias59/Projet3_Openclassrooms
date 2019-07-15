@@ -11,9 +11,16 @@ class ContactController extends AbstractController
     //------------------------------------------
     public function listMessagesAction()
     {
-        //$messagesManager = MessageManager();
-        //$messages = $messagesManager->listMessages();
+        $messagesManager = new MessageManager();
+        $messages = $messagesManager->listMessages();
         $this->render('Default/messages.html.twig', ['messages' => $messages]);
+    }
+
+    //Permet d'envoyer un message a l'auteur
+    //------------------------------------------
+    public function sendMessageAction()
+    {
+        $this->render('Default/contact.html.twig');
     }
 
 }
