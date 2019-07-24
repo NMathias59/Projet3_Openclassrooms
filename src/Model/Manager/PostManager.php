@@ -42,8 +42,8 @@ class PostManager extends Manager
      */
     public function createPost(Post $post)
     {
-        $query = self::$dataBase->prepare('INSERT INTO `post` (`title`, `content`) VALUES (:title, :content)');
-        $query->execute([':title' => $post->getTitle(), ':content' => $post->getContent()]);
+        $query = self::$dataBase->prepare('INSERT INTO `post` (`title`, `content`, `created_at`) VALUES (:title, :content, :createdAt)');
+        $query->execute([':title' => $post->getTitle(), ':content' => $post->getContent(), ':createdAt' => $post->getCreatedAt()->format('Y-m-d H:i:s')]);
 
         $post->setId(self::$dataBase->lastInsertId());
     }
