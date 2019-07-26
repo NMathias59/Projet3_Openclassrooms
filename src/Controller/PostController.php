@@ -7,9 +7,9 @@ use App\Model\Entity\Post;
 use Core\Controller\AbstractController;
 use App\Model\Manager\PostManager;
 use Core\Service\Form\Constraint\MaxLengthTextConstraint;
-use Core\Service\Form\Constraint\MinLengthTextConstraint;
 use Core\Service\Form\Constraint\NotBlankConstraint;
 use Core\Service\Form\Form;
+use Core\Service\Form\Type\IdType;
 use Core\Service\Form\Type\TextAreaType;
 use Core\Service\Form\Type\TextType;
 
@@ -58,14 +58,14 @@ class PostController extends AbstractController
         //creation du formulaire
         $form = (new Form())
             ->add('title', new TextType([
-                //on ajoute les contrainte voulue!
+                //ajout des contraintes voulue!
                 new NotBlankConstraint(),
                 new MaxLengthTextConstraint(15)
             ]))
             ->add('content', new TextAreaType([
                 new NotBlankConstraint()
             ]));
-        // recupération des info du form
+        // recupération des données du form !
         $form->handleRequest();
         //vérification du form
         if ($form->isSubmitted() && $form->isValid()) {
@@ -81,6 +81,30 @@ class PostController extends AbstractController
             'form' => $form
         ]);
     }
+    //Ajout deu post dans la base de données:
+    //------------------------------------------
+    public function deletePost()
+    {
+        $form = (new Form())
+            ->add('id', new IdType([
+                //ajout des contraintes voulue !
+                new NotBlankConstraint(),
+            ]));
+        //recuperation des données du form !
+        $form->handleRequest();
 
+        //vérification du form
+        if ($form->isSubmitted() && $form->isValid()){
+
+            //supresion du post de la bdd !
+            $post = (new Post())
+                ->setId($form->getData('id'));
+            $postManager = new PostManager();
+            $postManager->deleteThePost();
+            die('post suprimer !');
+        }
+        $this->render('Post/listAdmin.html.twig');
+
+    }
 
 }

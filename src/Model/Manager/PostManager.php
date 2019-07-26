@@ -8,7 +8,7 @@ use App\Model\Entity\Post;
 class PostManager extends Manager
 {
 
-    private function hydrate (array $data)
+    private function hydrate(array $data)
     {
         if (is_array($data)) {
             $tab = [];
@@ -27,9 +27,23 @@ class PostManager extends Manager
      * @return Post[] Liste de tout les posts.
      */
 
-    public function getAllPosts() : array
+    public function getAllPosts(): array
     {
         $query = self:: $dataBase->prepare('SELECT * FROM `post` ORDER BY `created_at`');
+        $query->execute();
+
+        $tabData = $query->fetchAll();
+
+        return $this->hydrate($tabData);
+    }
+
+    /**
+     * @return Post[] Liste des 6 dernier Posts pour l'acceuil.
+     */
+
+    public function getPosts()
+    {
+        $query = self:: $dataBase->prepare('SELECT * FROM `post` ORDER BY `created_at` DESC LIMIT 0, 6');
         $query->execute();
 
         $tabData = $query->fetchAll();
@@ -48,17 +62,9 @@ class PostManager extends Manager
         $post->setId(self::$dataBase->lastInsertId());
     }
 
-    /**
-     * @return Post[] Liste des 6 dernier Posts pour l'acceuil.
-     */
-
-    public function getPosts()
+    public function deleteThePost(int $id)
     {
-        $query = self:: $dataBase->prepare('SELECT * FROM `post` ORDER BY `created_at` DESC LIMIT 0, 6');
-        $query->execute();
-
-        $tabData = $query->fetchAll();
-
-        return $this->hydrate($tabData);
+        $req = self::$dataBase->prepare('DELETE FROM `post` WHERE `id` = ?');
+        $req->execute(array($_POST['post']));
     }
 }

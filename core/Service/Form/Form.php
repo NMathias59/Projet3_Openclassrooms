@@ -52,7 +52,7 @@ class Form
             $type->setValue($_POST[$name] ?? null);
         }
         $this->isHandled = true;
-    }
+}
 
     public function getData($name = null)
     {
