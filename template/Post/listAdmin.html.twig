@@ -16,21 +16,25 @@
 
 
                 {% for post in posts %}
-                    <form method="post">
-                        <div class="form-group">
-                            <tr>
-                                <td><label value="{{ form.getData('id') }}" name="id" class="form-control"
-                                           id="post_id" for="post_id">{{ post.id }}</label></td>
-                                <td>{{ post.title }}</td>
-                                <td> {{ post.createdAt }}  </td>
-                                <td>
-                                    <button type="buton" class="btn btn-primary">Lire</button>
-                                    <button type="buton" class="btn btn-success">Editer</button>
-                                    <button type="submit" class="btn btn-danger">Suprimer</button>
-                                </td>
-                            </tr>
-                        </div>
-                    </form>
+
+                    <div class="form-group">
+                        <tr>
+                            <td><a value="{{ form.getData('id') }}" name="id" class="form-control"
+                                   id="post_id" for="post_id">{{ post.id }}</a></td>
+                            <td>{{ post.title }}</td>
+                            <td> {{ post.createdAt }}  </td>
+                            <td>
+                                <a type="button" class="btn btn-primary" href="?uri=post&id={{ post.id }}">Lire</a>
+                                <button type="button" class="btn btn-success">Editer</button>
+
+                                <form method="post" action="?uri=deletePost" onsubmit="return confirm('aljsbdakl')">
+                                    <input type="hidden" name="id" value="{{ post.id }}">
+                                        <button type="submit" class="btn btn-danger"  >Suprimer</button>
+                                </form>
+
+                            </td>
+                        </tr>
+                    </div>
                 {% endfor %}
 
 

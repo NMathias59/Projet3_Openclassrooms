@@ -65,6 +65,6 @@ class PostManager extends Manager
     public function deleteThePost(int $id)
     {
         $req = self::$dataBase->prepare('DELETE FROM `post` WHERE `id` = ?');
-        $req->execute(array($_POST['post']));
+        $req->execute(array($id));
     }
 }

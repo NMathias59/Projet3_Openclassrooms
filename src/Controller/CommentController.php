@@ -8,7 +8,7 @@ use Core\Controller\AbstractController;
 
 class CommentController extends AbstractController
 {
-    public function listConmmentAction()
+    public function listCommentAction()
     {
         $this->render('Comment/listComments.html.twig');
     }

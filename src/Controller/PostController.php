@@ -81,9 +81,9 @@ class PostController extends AbstractController
             'form' => $form
         ]);
     }
-    //Ajout deu post dans la base de données:
+    //supression du post dans la base de données:
     //------------------------------------------
-    public function deletePost()
+    public function deletePostAction()
     {
         $form = (new Form())
             ->add('id', new IdType([
@@ -94,16 +94,21 @@ class PostController extends AbstractController
         $form->handleRequest();
 
         //vérification du form
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
             //supresion du post de la bdd !
-            $post = (new Post())
-                ->setId($form->getData('id'));
+            $id = $form->getData('id');
             $postManager = new PostManager();
-            $postManager->deleteThePost();
-            die('post suprimer !');
+            $postManager->deleteThePost($id);
+            //rediriger vers listAdminPost
+            $this->redirectTo('?uri=chapitresAdmin');
         }
-        $this->render('Post/listAdmin.html.twig');
+        //rediriger vers listAdminPost
+        $this->redirectTo('?uri=chapitresAdmin');
+    }
+
+    public function showPost(){
+        $id = $_GET['id'];
 
     }
 

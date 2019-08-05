@@ -2,6 +2,7 @@
 
 namespace Core\Controller;
 
+use http\Header;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
@@ -25,5 +26,11 @@ abstract class AbstractController
     public function render(string $name, array $context = [])
     {
         echo self::$twig->render($name, $context);
+    }
+
+    public function redirectTo(string $url)
+    {
+        header('Location: '. $url);
+        die();
     }
 }

@@ -25,7 +25,8 @@ class Routes extends AbstractRoutes
             new Route('messages', 'Contact', 'listMessages'),
             new Route('chapitresAdmin', 'Post', 'listAdmin'),
             new Route('newPost','Post','newPost'),
-            new Route('listcomment', 'Comment','listConmment'),
+            new Route('deletePost','Post','deletePost'),
+            new Route('listcomment', 'Comment','listComment'),
             new Route('contact','Contact','sendMessage'),
             new Route('error404','Default','error404'),
             new Route('error504','Default','error504')
