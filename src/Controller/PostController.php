@@ -107,9 +107,49 @@ class PostController extends AbstractController
         $this->redirectTo('?uri=chapitresAdmin');
     }
 
-    public function showPost(){
+    /**
+     * permet de lire un post
+     */
+    public function showAction()
+    {
         $id = $_GET['id'];
-
+        $postManager = new PostManager();
+        $post = $postManager->getPost($id);
+        $this->render('Post/show.html.twig');
     }
 
+    /**
+     * permet d'editer :
+     */
+    public function editAction()
+    {
+        $id = $_GET['id'];
+        $postManager = new PostManager();
+        $post = $postManager->getPost($id);
+
+        $form = (new Form())
+            ->add('title', new TextType([
+                //ajout des contraintes voulue!
+                new NotBlankConstraint(),
+                new MaxLengthTextConstraint(15)
+            ]))
+            ->add('content', new TextAreaType([
+                new NotBlankConstraint()
+            ]));
+        // recupération des données du form !
+        $form->handleRequest();
+        //vérification du form
+        if ($form->isSubmitted() && $form->isValid()) {
+            //envoie du post en base de données
+            $post = (new Post())
+                ->setTitle($form->getData('title'))
+                ->setContent($form->getData('content'));
+            $postManager->updatePost($post);
+            var_dump($post);
+            die('post editer');
+        }
+        $this->render('Post/edit.html.twig', [
+            'form' => $form, 'post'=> $post
+        ]);
+    }
 }

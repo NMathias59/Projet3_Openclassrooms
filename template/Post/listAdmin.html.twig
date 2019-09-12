@@ -24,8 +24,8 @@
                             <td>{{ post.title }}</td>
                             <td> {{ post.createdAt }}  </td>
                             <td>
-                                <a type="button" class="btn btn-primary" href="?uri=post&id={{ post.id }}">Lire</a>
-                                <button type="button" class="btn btn-success">Editer</button>
+                                <a  class="btn btn-primary" href="?uri=chapitre&id={{ post.id }}">Lire</a>
+                                <a  class="btn btn-success" href="?uri=editPost&id={{ post.id }}">Editer</a>
 
                                 <form method="post" action="?uri=deletePost" onsubmit="return confirm('aljsbdakl')">
                                     <input type="hidden" name="id" value="{{ post.id }}">
