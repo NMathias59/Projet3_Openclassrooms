@@ -15,7 +15,7 @@ class Post
         if ($data) {
             $this->setId($data->id);
             $this->setTitle($data->title);
-            $this->setCreatedAt($data->created_at);
+            $this->setCreatedAt(new \DateTime($data->created_at));
             $this->setContent($data->content);
         }
     }

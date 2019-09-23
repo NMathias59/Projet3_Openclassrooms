@@ -48,6 +48,7 @@ class PostController extends AbstractController
     {
         $postManager = new PostManager();
         $posts = $postManager->getAllPosts();
+        //var_dump($posts);
         $this->render('Post/listAdmin.html.twig', ['posts' => $posts]);
     }
 
@@ -115,7 +116,13 @@ class PostController extends AbstractController
         $id = $_GET['id'];
         $postManager = new PostManager();
         $post = $postManager->getPost($id);
-        $this->render('Post/show.html.twig');
+
+
+
+
+        $this->render('Post/show.html.twig', ['post' => $post]);
+
+
     }
 
     /**
@@ -141,15 +148,17 @@ class PostController extends AbstractController
         //vérification du form
         if ($form->isSubmitted() && $form->isValid()) {
             //envoie du post en base de données
-            $post = (new Post())
+            $post
                 ->setTitle($form->getData('title'))
                 ->setContent($form->getData('content'));
             $postManager->updatePost($post);
-            var_dump($post);
+            //var_dump($post);
             die('post editer');
         }
         $this->render('Post/edit.html.twig', [
             'form' => $form, 'post'=> $post
         ]);
     }
+
+
 }

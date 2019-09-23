@@ -22,7 +22,7 @@
                             <td><a value="{{ form.getData('id') }}" name="id" class="form-control"
                                    id="post_id" for="post_id">{{ post.id }}</a></td>
                             <td>{{ post.title }}</td>
-                            <td> {{ post.createdAt }}  </td>
+                            <td> {{ post.createdAt| date }}  </td>
                             <td>
                                 <a  class="btn btn-primary" href="?uri=chapitre&id={{ post.id }}">Lire</a>
                                 <a  class="btn btn-success" href="?uri=editPost&id={{ post.id }}">Editer</a>
