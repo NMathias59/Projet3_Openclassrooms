@@ -34,10 +34,11 @@
                 <!-- Comments Form -->
 
 
+
                 <div class="card my-4">
                     <h5 class="card-header">Mon commentaire :</h5>
                     <div class="card-body">
-                        <form>
+                        <form method="post">
                             <div class="form-group">
                                 <label for="comment_pseudo">Pseudo :</label>
                                 <input value="{{ form.getData('pseudo') }}" name="pseudo" type="text"
@@ -50,7 +51,8 @@
 
                             <div class="form-group">
                                 <label for="comment_content">commentaire :</label>
-                                <textarea name="content" class="form-control" placeholder="Commentaire*">{{ form.getData('content') }}</textarea>
+                                <textarea name="content" id="content" class="form-control"
+                                          placeholder="Commentaire*">{{ form.getData('content') }}</textarea>
                                 {% if form.hasErrors('content') %}
                                     <div class="text-danger">veuillez ajouter votre commentaire !!!</div>
                                 {% endif %}
@@ -67,26 +69,26 @@
                 <div class="media mb-4">
                     <div class="media-body border border-success rounded">
                         <div class=" col-lg">
-                            <h5 class="mt-0">Commenter Name</h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                            metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus
-                            viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue
-                            felis in faucibus.
-                            <div>
-                                <button type="button" class="btn btn-link">signaler</button>
-                            </div>
+                            {% for comment in comments %}
+                            <h5 class="mt-0">{{ comment.content }} </h5>
+                                <div>
+                                    <form method="post">
+                                        <button type="submit" name="signalCommentId" value="{{ comment.id}}" class="btn btn-link">
+
+                                        </button>
+                                    </form>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
                 <div class="media mb-4">
                     <div class="media-body border border-success rounded">
                         <div class=" col-lg">
-                            <h5 class="mt-0">Commenter Name</h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel
-                            metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus
-                            viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue
-                            felis in faucibus.
-                            <div>
-                                <button type="button" class="btn btn-link">signaler</button>
-                            </div>
+                            <h5 class="mt-0">
+                                <div>
+                                    <button type="button" class="btn btn-link">signaler</button>
+                                </div>
                         </div>
                     </div>
                 </div>

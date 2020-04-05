@@ -27,7 +27,7 @@ class Router
         }
 
         $controller = new $controllerFullName();
-
+//var_dump($actionName, $controller);
         if (!method_exists($controller, $actionName)) {
             echo '500 action doesn\'t exist';
             die();

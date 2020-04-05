@@ -8,16 +8,20 @@ class Comment
     private $createdBy;
     private $createdAt;
     private $content;
-    private $post;
+    private $postId;
+    private $report;
 
     public function __construct($data = null)
     {
+        $this->setCreatedAt(new \DateTime());
+        $this->setReport(false);
         if ($data) {
             $this->setId($data->id);
             $this->setCreatedBy($data->created_by);
-            $this->setCreatedAt($data->created_at);
+            $this->setCreatedAt(new \DateTime($data->created_at));
             $this->setContent($data->comment);
-            $this->setPost($data->post_id);
+            $this->setPostId($data->post_id);
+            $this->setReport($data->report);
         }
     }
 
@@ -29,6 +33,7 @@ class Comment
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
     public function getCreatedBy()
@@ -39,8 +44,12 @@ class Comment
     public function setCreatedBy($createdBy)
     {
         $this->createdBy = $createdBy;
+        return $this;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt()
     {
         return $this->createdAt;
@@ -49,6 +58,7 @@ class Comment
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+        return $this;
     }
 
     public function getContent()
@@ -59,15 +69,34 @@ class Comment
     public function setContent($content)
     {
         $this->content = $content;
+        return $this;
     }
 
-    public function getPost()
+    public function getPostId()
     {
-        return $this->post;
+        return $this->postId;
     }
 
-    public function setPost($post)
+    public function setPostId($postId)
     {
-        $this->post = $post;
+        $this->postId = $postId;
+        return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getReport()
+    {
+        return $this->report;
+    }
+
+    /**
+     * @param mixed $report
+     */
+    public function setReport($report)
+    {
+        $this->report = $report;
+    }
+
 }

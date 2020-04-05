@@ -22,28 +22,19 @@ class CommentManager extends Manager
         return new Comment($data);
     }
 
-    public function commentPost()
+
+    public function newCommentPost(Comment $comment)
     {
-        $query = self:: $dataBase->prepare('SELECT * FROM `comment` ORDER BY `createdAt`');
-        $query->execute();
+        $query = self::$dataBase->prepare('INSERT INTO `comment` (`created_by`,`comment`,`post_id`, `report`, `created_at`) VALUE (:createdBy, :comment, :postId, :report, :createdAt)');
+        $query->execute([':createdBy' => $comment->getCreatedBy(), ':comment' => $comment->getContent(), ':postId'=>$comment->getPostId(), ':report'=>$comment->getReport()?1:0, ':createdAt'=>$comment->getCreatedAt()->format('Y-m-d H:i:s')]);
 
-        $tabData = $query->fetchAll();
-
-        return $this->hydrate($tabData);
+        $comment->setId(self::$dataBase->lastInsertId());
     }
 
-    public function newCommentPost($comment)
+    public function deleteTheComment($id)
     {
-        $query = self::$dataBase->prepare('INSERT INTO `comment` (`name`,`comment`) VALUE (:name, :comment)');
-        $query->execute([':name' => $comment->getName(), ':comment' => $comment->getComment()]);
-
-        $post->setId(self::$dataBase->lastInsertId());
-    }
-
-    public function deleteTheComment()
-    {
-        $req->self::$dataBase->prepare('DELETE FROM `comment` WHERE `id` = ?');
-        $req->execute(array($_POST['comment']));
+        $query = self::$dataBase->prepare('DELETE FROM `comment` WHERE `id` = :id');
+        $query->execute([':id' => $id]);
     }
 
     public function reportComment($commentId)
@@ -51,4 +42,30 @@ class CommentManager extends Manager
         $query = self::$dataBase->prepare('UPDATE `comment` SET `report` = :report WHERE `id` = :id');
         $query->execute([':id' => $commentId, ':report' => 1]);
     }
+
+    public function getCommentByPost($postId)
+    {
+        $query = self::$dataBase->prepare('SELECT * FROM `comment` WHERE `post_id` = :postId ORDER BY `created_at` ');
+        $query->execute([':postId' => $postId]);
+        $tabData = $query->fetchAll();
+
+        return $this->hydrate($tabData);
+    }
+
+
+    // partie administration
+
+    public function commentsPost()
+    {
+        $query = self:: $dataBase->prepare('SELECT * FROM `comment` ORDER BY `created_At`');
+        $query->execute();
+
+        $tabData = $query->fetchAll();
+
+        return $this->hydrate($tabData);
+    }
+
+
 }
+
+

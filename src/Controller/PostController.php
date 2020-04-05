@@ -3,7 +3,9 @@
 
 namespace App\Controller;
 
+use App\Model\Entity\Comment;
 use App\Model\Entity\Post;
+use App\Model\Manager\CommentManager;
 use Core\Controller\AbstractController;
 use App\Model\Manager\PostManager;
 use Core\Service\Form\Constraint\MaxLengthTextConstraint;
@@ -61,7 +63,7 @@ class PostController extends AbstractController
             ->add('title', new TextType([
                 //ajout des contraintes voulue!
                 new NotBlankConstraint(),
-                new MaxLengthTextConstraint(15)
+                new MaxLengthTextConstraint(40)
             ]))
             ->add('content', new TextAreaType([
                 new NotBlankConstraint()
@@ -116,11 +118,32 @@ class PostController extends AbstractController
         $id = $_GET['id'];
         $postManager = new PostManager();
         $post = $postManager->getPost($id);
+        $commentManager = new CommentManager();
+        $comments = $commentManager->getCommentByPost($id);
+        $form = (new Form())
+            ->add('pseudo', new TextType([
+                new NotBlankConstraint(),
+                new MaxLengthTextConstraint(10)
+            ]))
+            ->add('content', new TextAreaType([
+                new NotBlankConstraint(),
+                new MaxLengthTextConstraint(140)
+            ]));
+        $form->handleRequest();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $comments = (new comment())
+                ->setCreatedBy($form->getData('pseudo'))
+                ->setContent($form->getData('content'))
+                ->setPostId($post->getId());
+            $commentManager = new CommentManager();
+            $commentManager->newCommentPost($comments);
+            die('commentaire poster');
+        }
 
 
-
-
-        $this->render('Post/show.html.twig', ['post' => $post]);
+        $this->render('Post/show.html.twig', ['post' => $post, 'comments' => $comments]);
 
 
     }
@@ -156,7 +179,7 @@ class PostController extends AbstractController
             die('post editer');
         }
         $this->render('Post/edit.html.twig', [
-            'form' => $form, 'post'=> $post
+            'form' => $form, 'post' => $post
         ]);
     }
 
