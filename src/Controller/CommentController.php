@@ -70,5 +70,25 @@ class CommentController extends AbstractController
         }
     }
 
+    public function reportCommentAction()
+    {
+        $form = (new Form())
+            ->add('reportComment', new IdType([
+                new NotBlankConstraint(),
+            ]));
+
+        $form->handleRequest();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $commentManager = new CommentManager();
+            $commentManager->reportComment($form->getData('reportComment'));
+
+            $this->redirectTo('?uri=listComments');
+
+        }
+
+    }
+
 
 }

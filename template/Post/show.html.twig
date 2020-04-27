@@ -73,7 +73,11 @@
                             <h5 class="mt-0">{{ comment.content }} </h5>
                                 <div>
                                     <form method="post">
-                                        <button type="submit" name="signalCommentId" value="{{ comment.id}}" class="btn btn-link">
+
+                                        <form action="?uri=reportComment" method="post" >
+                                            <input name="reportComment" value="{{ comment.postId}}" type="hidden" >
+                                            <button type="submit"   class="btn btn-secondary">Signaler</button>
+                                        </form>
 
                                         </button>
                                     </form>

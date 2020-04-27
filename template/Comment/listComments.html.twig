@@ -95,7 +95,13 @@
                                 <td>{{ comment.createdAt |date }}</td>
                                 <td>{{ comment.postId }}</td>
                                 <td>{{ comment.content }}</td>
-                                <td></td>
+                                <td>
+                                    {% if comment.report == 1 %}
+                                    <div id="redCircle">
+
+                                    </div>
+                                    {% endif %}
+                                </td>
                                 <td>
                                     <form action="?uri=deleteComment" method="post" >
                                         <input name="commentId" value="{{ comment.id}}" type="hidden" >
