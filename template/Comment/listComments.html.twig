@@ -98,9 +98,14 @@
                                 <td>
                                     {% if comment.report == 1 %}
                                     <div id="redCircle">
-
                                     </div>
                                     {% endif %}
+                                </td>
+                                <td>
+                                    <form action="?uri=deReportComment" method="post" >
+                                        <input name="commentId" value="{{ comment.id}}" type="hidden" >
+                                        <button type="submit"   class="btn btn-primary">dereport</button>
+                                    </form>
                                 </td>
                                 <td>
                                     <form action="?uri=deleteComment" method="post" >

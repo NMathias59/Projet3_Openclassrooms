@@ -16,7 +16,12 @@
                 <div class="text-danger">Votre titre n'est pas valide !</div>
             {% endif %}
         </div>
-
+        {% if form.hasErrors('csrf') %}
+            <div class="text-danger">
+                Token csrf invalide, veuillez renvoyer le formulaire.
+            </div>
+        {% endif %}
+        <input type="hidden" name="csrf" value="{{ form.getPart('csrf').initToken }}">
         <button type="submit" class="btn btn-primary">Poster</button>
     </form>
 

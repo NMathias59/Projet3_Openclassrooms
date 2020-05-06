@@ -8,12 +8,15 @@ use App\Model\Entity\Post;
 use App\Model\Manager\CommentManager;
 use Core\Controller\AbstractController;
 use App\Model\Manager\PostManager;
+use Core\Service\Form\Constraint\CsrfConstraint;
 use Core\Service\Form\Constraint\MaxLengthTextConstraint;
 use Core\Service\Form\Constraint\NotBlankConstraint;
 use Core\Service\Form\Form;
+use Core\Service\Form\Type\CsrfType;
 use Core\Service\Form\Type\IdType;
 use Core\Service\Form\Type\TextAreaType;
 use Core\Service\Form\Type\TextType;
+use Core\Service\Util\FlashBag;
 
 class PostController extends AbstractController
 {
@@ -67,7 +70,12 @@ class PostController extends AbstractController
             ]))
             ->add('content', new TextAreaType([
                 new NotBlankConstraint()
-            ]));
+            ]))
+            ->add('csrf', new CsrfType(
+                [
+                    new CsrfConstraint()
+                ]
+            ));
         // recupération des données du form !
         $form->handleRequest();
         //vérification du form
@@ -78,7 +86,7 @@ class PostController extends AbstractController
                 ->setContent($form->getData('content'));
             $postManager = new PostManager();
             $postManager->createPost($post);
-            die('post envoyer');
+
         }
         $this->render('Post/newPost.html.twig', [
             'form' => $form
@@ -92,7 +100,12 @@ class PostController extends AbstractController
             ->add('id', new IdType([
                 //ajout des contraintes voulue !
                 new NotBlankConstraint(),
-            ]));
+            ]))
+            ->add('csrf', new CsrfType(
+                [
+                    new CsrfConstraint()
+                ]
+            ));
         //recuperation des données du form !
         $form->handleRequest();
 
@@ -165,7 +178,12 @@ class PostController extends AbstractController
             ]))
             ->add('content', new TextAreaType([
                 new NotBlankConstraint()
-            ]));
+            ]))
+            ->add('csrf', new CsrfType(
+                [
+                    new CsrfConstraint()
+                ]
+            ));
         // recupération des données du form !
         $form->handleRequest();
         //vérification du form

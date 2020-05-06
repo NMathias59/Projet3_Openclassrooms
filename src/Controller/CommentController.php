@@ -8,9 +8,11 @@ use App\Model\Manager\CommentManager;
 use App\Model\Manager\PostManager;
 use Core\Controller\AbstractController;
 use App\Model\Entity\Comment;
+use Core\Service\Form\Constraint\CsrfConstraint;
 use Core\Service\Form\Constraint\MaxLengthTextConstraint;
 use Core\Service\Form\Constraint\NotBlankConstraint;
 use Core\Service\Form\Form;
+use Core\Service\Form\Type\CsrfType;
 use Core\Service\Form\Type\IdType;
 use Core\Service\Form\Type\TextAreaType;
 use Core\Service\Form\Type\TextType;
@@ -27,7 +29,12 @@ class CommentController extends AbstractController
             ->add('content', new TextAreaType([
                 new NotBlankConstraint(),
                 new MaxLengthTextConstraint()
-            ]));
+            ]))
+            ->add('csrf', new CsrfType(
+                [
+                    new CsrfConstraint()
+                ]
+            ));
         $form->handleRequest();
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,6 +77,24 @@ class CommentController extends AbstractController
         }
     }
 
+    public function deReportCommentAction()
+    {
+        $form = (new Form())
+            ->add('commentId', new IdType([
+                new NotBlankConstraint(),
+            ]));
+
+        $form->handleRequest();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $commentManager = new CommentManager();
+            $commentManager->deReportComment($form->getData('commentId'));
+
+            $this->redirectTo('?uri=listComments');
+        }
+    }
+
     public function reportCommentAction()
     {
         $form = (new Form())
@@ -84,7 +109,7 @@ class CommentController extends AbstractController
             $commentManager = new CommentManager();
             $commentManager->reportComment($form->getData('reportComment'));
 
-            $this->redirectTo('?uri=listComments');
+            die('commentaire signaler');
 
         }
 

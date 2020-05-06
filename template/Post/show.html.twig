@@ -34,7 +34,6 @@
                 <!-- Comments Form -->
 
 
-
                 <div class="card my-4">
                     <h5 class="card-header">Mon commentaire :</h5>
                     <div class="card-body">
@@ -57,7 +56,12 @@
                                     <div class="text-danger">veuillez ajouter votre commentaire !!!</div>
                                 {% endif %}
                             </div>
-
+                            {% if form.hasErrors('csrf') %}
+                                <div class="text-danger">
+                                    Token csrf invalide, veuillez renvoyer le formulaire.
+                                </div>
+                            {% endif %}
+                            <input type="hidden" name="csrf" value="{{ form.getPart('csrf').initToken }}">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
 
@@ -65,37 +69,22 @@
                 </div>
 
                 <!-- Single Comment -->
-
-                <div class="media mb-4">
+                {% for comment in comments %}
+                <div class="media mb-5">
                     <div class="media-body border border-success rounded">
                         <div class=" col-lg">
-                            {% for comment in comments %}
-                            <h5 class="mt-0">{{ comment.content }} </h5>
+                                <p class="mt-1">{{ comment.content }} </p>
                                 <div>
-                                    <form method="post">
-
-                                        <form action="?uri=reportComment" method="post" >
-                                            <input name="reportComment" value="{{ comment.postId}}" type="hidden" >
-                                            <button type="submit"   class="btn btn-secondary">Signaler</button>
-                                        </form>
-
-                                        </button>
+                                    <form action="?uri=reportComment" method="post">
+                                        <input name="reportComment" value="{{ comment.id }}" type="hidden">
+                                        <button type="submit" class="btn btn-secondarym, col-1">Signaler</button>
                                     </form>
                                 </div>
-                            {% endfor %}
+
                         </div>
                     </div>
                 </div>
-                <div class="media mb-4">
-                    <div class="media-body border border-success rounded">
-                        <div class=" col-lg">
-                            <h5 class="mt-0">
-                                <div>
-                                    <button type="button" class="btn btn-link">signaler</button>
-                                </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
 
 
             </div>
