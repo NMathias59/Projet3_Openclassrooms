@@ -28,13 +28,18 @@ class LoginManager extends Manager
         $requete->execute(array('login' => $login ));
        
         $admin = $this->hydrate( $requete->fetch());
-    
+    var_dump($admin);
         if(password_verify($password, $admin-> getPassword()))
         {
             return $admin;
         }
         return null;
     }
-    
+
+    public function findAdminById($adminConnectedId)
+    {
+
+    }
+
 
 }

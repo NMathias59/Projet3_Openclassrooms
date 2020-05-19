@@ -2,10 +2,12 @@
 
 namespace Core\Controller;
 
+use Core\Service\Util\FlashBag;
 use http\Header;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
+use Twig\TwigFunction;
 
 abstract class AbstractController
 {
@@ -19,7 +21,9 @@ abstract class AbstractController
                 'debug' => true,
             ]);
             self::$twig->addExtension(new DebugExtension());
-            //self::$twig->addExtension(new \Twig_Extensions_Extension_Text());
+            self::$twig->addFunction(new TwigFunction('flashbag', function (){
+                return FlashBag::getInstance()->getFlashs();
+            }));
         }
     }
 
@@ -33,4 +37,6 @@ abstract class AbstractController
         header('Location: '. $url);
         die();
     }
+
+
 }

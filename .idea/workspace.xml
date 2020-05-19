@@ -3,14 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="e7c9eb7f-9e59-4f31-8815-2968fbe6b4f2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Controller/AbstractController.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Controller/AbstractController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/Service/Util/AuthenticationUtil.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/Service/Util/AuthenticationUtil.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Config/Routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config/Routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PostController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Manager/CommentManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Manager/CommentManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/Comment/listComments.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Comment/listComments.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/Default/contact.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Default/contact.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/Post/newPost.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Post/newPost.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/Post/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Post/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Manager/LoginManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Manager/LoginManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/Default/administration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Default/administration.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/basenofooter.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/basenofooter.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -124,6 +125,12 @@
       <workItem from="1588695532929" duration="169000" />
       <workItem from="1588695713062" duration="702000" />
       <workItem from="1588766602285" duration="8261000" />
+      <workItem from="1588780013806" duration="121000" />
+      <workItem from="1589018993655" duration="748000" />
+      <workItem from="1589228358969" duration="176000" />
+      <workItem from="1589233193672" duration="3000" />
+      <workItem from="1589299528003" duration="3453000" />
+      <workItem from="1589904928315" duration="1651000" />
     </task>
     <task id="LOCAL-00001" summary="ajout du formulaire et mise en place de la fonction pour l'envoie de new post a la bdd">
       <created>1563978834055</created>
@@ -167,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588010801690</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="mise en place de la contrainte 'csrf' pour la faille du meme nom + ajout de la fonction pour designaler un commentaire">
+      <created>1588780126914</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1588780126914</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +207,7 @@
     <MESSAGE value="ajout fonction editer" />
     <MESSAGE value="fix de la fonction editer" />
     <MESSAGE value="creation de la fonction commentaire signaler" />
-    <option name="LAST_COMMIT_MESSAGE" value="creation de la fonction commentaire signaler" />
+    <MESSAGE value="mise en place de la contrainte 'csrf' pour la faille du meme nom + ajout de la fonction pour designaler un commentaire" />
+    <option name="LAST_COMMIT_MESSAGE" value="mise en place de la contrainte 'csrf' pour la faille du meme nom + ajout de la fonction pour designaler un commentaire" />
   </component>
 </project>

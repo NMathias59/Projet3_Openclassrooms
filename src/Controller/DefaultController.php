@@ -4,6 +4,8 @@
 namespace App\Controller;
 
 use Core\Controller\AbstractController;
+use Core\Service\Util\AuthenticationUtil;
+use Core\Service\Util\FlashBag;
 
 class DefaultController extends AbstractController
 {
@@ -25,6 +27,10 @@ class DefaultController extends AbstractController
     //------------------------------------------
     public function adminHomepageAction()
     {
+        if (AuthenticationUtil::isAdminConnected() === false){
+            FlashBag::getInstance() ->addFlash('Veuillez-vous connecter','warning');
+            $this->redirectTo('?uri=connexion');
+        }
         $this->render('Default/administration.html.twig');
     }
 

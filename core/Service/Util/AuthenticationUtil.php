@@ -3,37 +3,37 @@
 namespace Core\Service\Util;
 
 
-use App\Entity\User;
-use App\Repository\UserRepository;
+use App\Model\Entity\Admin;
+use App\Model\Manager\LoginManager;
 
 abstract class AuthenticationUtil
 {
-    static public function connectUser(User $user)
+    static public function connectAdmin(Admin $admin)
     {
-        SessionUtil::getInstance()->set('userConnectedId', $user->getId());
+        SessionUtil::getInstance()->set('adminConnectedId', $admin->getId());
     }
 
-    static public function disconnectUser()
+    static public function disconnectAdmin()
     {
-        SessionUtil::getInstance()->remove('userConnectedId');
+        SessionUtil::getInstance()->remove('adminConnectedId');
     }
 
-    static public function isUserConnected(): bool
+    static public function isAdminConnected(): bool
     {
-        if (empty(SessionUtil::getInstance()->get('userConnectedId'))) {
+        if (empty(SessionUtil::getInstance()->get('adminConnectedId'))) {
             return false;
         } else {
             return true;
         }
     }
 
-    static public function getUsetConnected(): ?User
+    static public function getAdminConnected(): ?Admin
     {
-        $userConnectedId = SessionUtil::getInstance()->get('userConnectedId');
+        $adminConnectedId = SessionUtil::getInstance()->get('adminConnectedId');
 
-        $userRepository = new UserRepository();
-        $userConnected = $userRepository->findUserById($userConnectedId);
+        $adminRepository = new LoginManager();
+        $adminConnected = $adminRepository->findAdminById($adminConnectedId);
 
-        return $userConnected;
+        return $adminConnected;
     }
 }

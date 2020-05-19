@@ -23,6 +23,15 @@
     <link href="../public/css/modern-business.css" rel="stylesheet">
 </head>
 <body>
+<div>
+    {% for type, flashs in flashbag() %}
+        {% for flash in flashs %}
+            <div class="alert alert-{{ type }}" role="alert">
+                {{ flash }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>
 <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
