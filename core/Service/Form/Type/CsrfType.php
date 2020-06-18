@@ -4,19 +4,16 @@
 namespace Core\Service\Form\Type;
 
 
+use Core\Service\Util\CsrfUtil;
 use Core\Service\Util\SessionUtil;
 
 class CsrfType extends AbstractType
 {
     public function initToken() {
-        $csrf = [
-            'token' => bin2hex(md5(rand())),
-            'createdAt' => new \DateTime()
-        ];
 
-        SessionUtil::getInstance()->set('csrf', $csrf);
+        $csrfToken = CsrfUtil::generateToken();
 
-        $this->setValue($csrf['token']);
+        $this->setValue($csrfToken);
 
         return $this->getValue();
     }

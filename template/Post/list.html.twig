@@ -15,18 +15,12 @@
             </ol>
             <div class="row">
                 {% for post in posts %}
-                <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+                <div class="col-lg-3 card-body">
                     <div class="card h-100">
                         <div class="card-body">
                             <h4 class="card-title">
-
-
-                                <a> {{ post.name }} </a>
-                                {#<a href="post"><?= $post->getName(); ?></a>#}
+                                <a> {{ post.title }} </a>
                             </h4>
-                            <a> {{ post.content }} </a>
-{#                            <p class="card-text"><?= $post->getContent(); ?></p>-->#}
-
                             <button type="button" class="btn btn-primary">voir plus</button>
                         </div>
                     </div>

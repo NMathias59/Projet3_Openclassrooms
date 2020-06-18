@@ -27,3 +27,13 @@ body {
 .portfolio-item {
   margin-bottom: 30px;
 }
+
+#btnTPS {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#cardsHP{
+  margin-left: 15%;
+
+}

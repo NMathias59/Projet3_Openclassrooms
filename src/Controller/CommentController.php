@@ -16,10 +16,11 @@ use Core\Service\Form\Type\CsrfType;
 use Core\Service\Form\Type\IdType;
 use Core\Service\Form\Type\TextAreaType;
 use Core\Service\Form\Type\TextType;
+use Core\Service\Util\FlashBag;
 
 class CommentController extends AbstractController
 {
-    public function newComment()
+    /*public function newComment()
     {
         $form = (new Form())
             ->add('pseudo', new TextType([
@@ -44,10 +45,10 @@ class CommentController extends AbstractController
                 ->setContnent($form->getData('content'));
             $commentManager = new CommentManager();
             $commentManager->newCommentPost($comments);
-            die('commentaire poster');
+            ;
         }
 
-    }
+    }*/
 
     public function listCommentsAction()
     {

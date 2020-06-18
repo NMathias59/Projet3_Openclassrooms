@@ -9,7 +9,7 @@
 
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="home">Home</a>
+                <a href="?uri=homepage">Home</a>
             </li>
             <li class="breadcrumb-item active">{{ post.title }}</li>
         </ol>
@@ -28,7 +28,7 @@
                 <hr>
                 <!-- Post Content -->
 
-                <p>{{ post.content }}</p>
+                <p>{{ post.content | raw }}</p>
                 <hr>
 
                 <!-- Comments Form -->
@@ -47,7 +47,6 @@
                                 {% endif %}
                                 <p class="help-block text-danger"></p>
                             </div>
-
                             <div class="form-group">
                                 <label for="comment_content">commentaire :</label>
                                 <textarea name="content" id="content" class="form-control"
@@ -62,7 +61,7 @@
                                 </div>
                             {% endif %}
                             <input type="hidden" name="csrf" value="{{ form.getPart('csrf').initToken }}">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Publier</button>
                         </form>
 
                     </div>
@@ -70,29 +69,23 @@
 
                 <!-- Single Comment -->
                 {% for comment in comments %}
-                <div class="media mb-5">
-                    <div class="media-body border border-success rounded">
-                        <div class=" col-lg">
+                    <div class="media mb-5">
+                        <div class="media-body border border-success rounded">
+                            <div class=" col-lg">
+                                <h1>{{ comment.createdBy }}</h1>
                                 <p class="mt-1">{{ comment.content }} </p>
                                 <div>
                                     <form action="?uri=reportComment" method="post">
                                         <input name="reportComment" value="{{ comment.id }}" type="hidden">
-                                        <button type="submit" class="btn btn-secondarym, col-1">Signaler</button>
+                                        <button type="submit" class="btn btn-secondary, col-1">Signaler</button>
                                     </form>
                                 </div>
-
+                            </div>
                         </div>
                     </div>
-                </div>
                 {% endfor %}
-
-
             </div>
-
-
         </div>
-        <!-- /.row -->
-
     </div>
 {% endblock %}
 

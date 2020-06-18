@@ -16,6 +16,8 @@ use Core\Service\Form\Type\PasswordType;
 use Core\Service\Form\Type\TextAreaType;
 use Core\Service\Form\Type\TextType;
 use Core\Service\Util\AuthenticationUtil;
+use Core\Service\Util\FlashBag;
+use mysql_xdevapi\Warning;
 
 class SecurityController extends AbstractController
 {
@@ -39,19 +41,20 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $loginManager = new LoginManager();
-            $loginUser = $loginManager->loginUser($form-> getData('login'), $form->getData('password'));
-            var_dump($loginUser,$form-> getData('login'), $form->getData('password') );
-            if ($loginUser !== null ){
-                AuthenticationUtil::connectAdmin($loginUser);
-                $this->redirectTo('?uri=administration');
+            $loginUser = $loginManager->loginUser($form->getData('login'), $form->getData('password'));
+            if ($loginUser === null) {
+                FlashBag::getInstance()->addFlash('identifants invalides', 'warning');
+                $this->redirectTo('?uri=connexion');
             }
-
-          var_dump('reussi');
+            AuthenticationUtil::connectAdmin($loginUser);
+            $this->redirectTo('?uri=administration');
         }
+
         $this->render('Admin/connection.html.twig');
     }
 
-    public function disconnectionAction() {
+    public function disconnectionAction()
+    {
         AuthenticationUtil::disconnectAdmin();
         $this->redirectTo('?uri=administration');
     }

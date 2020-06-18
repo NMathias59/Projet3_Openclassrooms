@@ -16,6 +16,7 @@ use Core\Service\Form\Type\CsrfType;
 use Core\Service\Form\Type\IdType;
 use Core\Service\Form\Type\TextAreaType;
 use Core\Service\Form\Type\TextType;
+use Core\Service\Util\CsrfUtil;
 use Core\Service\Util\FlashBag;
 
 class PostController extends AbstractController
@@ -54,7 +55,8 @@ class PostController extends AbstractController
         $postManager = new PostManager();
         $posts = $postManager->getAllPosts();
         //var_dump($posts);
-        $this->render('Post/listAdmin.html.twig', ['posts' => $posts]);
+        $this->render('Post/listAdmin.html.twig', ['posts' => $posts, 'csrfToken'=> CsrfUtil::generateToken()]);
+
     }
 
     //Ajout deu post dans la base de données:
@@ -84,6 +86,7 @@ class PostController extends AbstractController
             $post = (new Post())
                 ->setTitle($form->getData('title'))
                 ->setContent($form->getData('content'));
+            FlashBag::getInstance()->addFlash('post poster', 'secondary');
             $postManager = new PostManager();
             $postManager->createPost($post);
 
@@ -117,9 +120,12 @@ class PostController extends AbstractController
             $postManager = new PostManager();
             $postManager->deleteThePost($id);
             //rediriger vers listAdminPost
+            FlashBag::getInstance()->addFlash('post supprime', 'success');
             $this->redirectTo('?uri=chapitresAdmin');
         }
         //rediriger vers listAdminPost
+
+        FlashBag::getInstance()->addFlash('erreur lors de la supression', 'warning');
         $this->redirectTo('?uri=chapitresAdmin');
     }
 
@@ -152,7 +158,8 @@ class PostController extends AbstractController
                 ->setPostId($post->getId());
             $commentManager = new CommentManager();
             $commentManager->newCommentPost($comments);
-            die('commentaire poster');
+            FlashBag::getInstance()->addFlash('commentaire ajoute', 'success');
+            $this->redirectTo('?uri=chapitre&id=' . $post->getId());
         }
 
 

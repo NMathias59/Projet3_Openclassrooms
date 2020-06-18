@@ -27,10 +27,7 @@ class DefaultController extends AbstractController
     //------------------------------------------
     public function adminHomepageAction()
     {
-        if (AuthenticationUtil::isAdminConnected() === false){
-            FlashBag::getInstance() ->addFlash('Veuillez-vous connecter','warning');
-            $this->redirectTo('?uri=connexion');
-        }
+        $this->checkConnection();
         $this->render('Default/administration.html.twig');
     }
 
@@ -47,5 +44,7 @@ class DefaultController extends AbstractController
     {
         $this->render('Error/error 504.html.twig');
     }
+
+
 
 }

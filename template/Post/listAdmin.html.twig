@@ -24,12 +24,13 @@
                             <td>{{ post.title }}</td>
                             <td> {{ post.createdAt| date }}  </td>
                             <td>
-                                <a  class="btn btn-primary" href="?uri=chapitre&id={{ post.id }}">Lire</a>
-                                <a  class="btn btn-success" href="?uri=editPost&id={{ post.id }}">Editer</a>
+                                <a class="btn btn-primary" href="?uri=chapitre&id={{ post.id }}">Lire</a>
+                                <a class="btn btn-success" href="?uri=editPost&id={{ post.id }}">Editer</a>
 
-                                <form method="post" action="?uri=deletePost" onsubmit="return confirm('aljsbdakl')">
+                                <form method="post" action="?uri=deletePost" onsubmit="return confirm('suprimer le post')">
                                     <input type="hidden" name="id" value="{{ post.id }}">
-                                        <button type="submit" class="btn btn-danger"  >Suprimer</button>
+                                    <input type="hidden" name="csrf" value="{{ csrfToken }}">
+                                    <button type="submit" class="btn btn-danger">Supprimer</button>
                                 </form>
 
                             </td>

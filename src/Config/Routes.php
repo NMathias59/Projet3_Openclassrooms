@@ -33,7 +33,6 @@ class Routes extends AbstractRoutes
             new Route('deleteComment', 'Comment', 'deleteComment'),
             new Route('reportComment', 'Comment', 'reportComment'),
             new Route('deReportComment', 'Comment', 'deReportComment'),
-            new Route('contact','Contact','sendMessage'),
             new Route('error404','Default','error404'),
             new Route('error504','Default','error504')
         ];

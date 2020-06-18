@@ -380,3 +380,7 @@ body.sidebar-toggled footer.sticky-footer {
   height: 50px;
   border-radius: 50px;
 }
+
+#btnNP {
+  text-align: center;
+}

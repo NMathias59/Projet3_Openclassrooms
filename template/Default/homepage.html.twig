@@ -7,40 +7,32 @@
 
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">ACCEUIL </h1>
-    <div class="row">
-        {% for post in posts %}
-
-        <div class="col-lg-6 portfolio-item">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h4 class="card-title"><a>{{ post.title }}</a></h4>
-                    <span> {{ post.createdAt|date("d/m/Y") }} </span>
-                    <br/>
-                    <br/>
-                    <p class="card-text">{{ post.content }}</p>
-                    <a  class="btn btn-primary" href="?uri=chapitre&id={{ post.id }}">lire la suite</a>
-                </div>
-            </div>
-        </div>
-
-
+    <div class="container-fluid">
         <div>
-
-
-            <div class="row">
-                <div>
-                    <h3>{{ post.title }}
-                    </h3>
-                    <span>{{ post.createdAt|date("d/m/Y")}}</span>
-                    <p>{{ post.content }}</p>
-                    <a class="btn btn-primary" href="#">Lire la suite <span
-                                class="glyphicon glyphicon-chevron-right"></span> </a>
-                </div>
-            </div>
-
+            <h1 class="mt-4 mb-3 col-lg-12">ACCUEIL </h1>
         </div>
-        {% endfor %}
+        <div class="row">
+            {% for post in posts %}
+
+                <div class="col-lg-8 portfolio-item" id="cardsHP">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4 class="card-title"><a>{{ post.title }}</a></h4>
+                            <span> {{ post.createdAt | date("d/m/Y") }} </span>
+                            <br/>
+                            <br/>
+                            <p class="card-text"> {{ post.content | raw }} </p>
+                            <a class="btn btn-primary" href="?uri=chapitre&id={{ post.id }}">lire la suite</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            {% endfor %}
+            <div class="col-lg-12" id="btnTPS">
+                <a class="btn-secondary" href="?uri=chapitres"> Tous les chapitres </a>
+            </div>
+        </div>
     </div>
     {#    <h1> Voila est la home page </h1>#}
 

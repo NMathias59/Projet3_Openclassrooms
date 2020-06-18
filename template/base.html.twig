@@ -19,13 +19,22 @@
     <link href="../public/css/modern-business.css" rel="stylesheet">
     <!-- install TinyMCE -->
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>tinymce.init({selector:'textarea'});</script>
+    <script>tinymce.init({selector:'.tinymce'});</script>
 </head>
 <body>
+<div>
+    {% for type, flashs in flashbag() %}
+        {% for flash in flashs %}
+            <div class="alert alert-{{ type }}" role="alert">
+                {{ flash }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>
 <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Jean FORTEROCHE </a>
+            <a class="navbar-brand" href="?uri=homepage">Jean FORTEROCHE </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -34,7 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href=>Acceuil</a>
+                        <a class="nav-link" href=?uri=homepage>Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="?uri=chapitres">Chapitres</a>
@@ -92,11 +101,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-md-4">
-                <h4 class="text-uppercase mb-4">ME CONTACTER</h4>
-                <p class="lead mb-0">
-                    <a href="?uri=contact">contact</a></p>
-            </div>
+
         </div>
     </div>
 </footer>

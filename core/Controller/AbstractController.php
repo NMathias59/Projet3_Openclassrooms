@@ -2,6 +2,7 @@
 
 namespace Core\Controller;
 
+use Core\Service\Util\AuthenticationUtil;
 use Core\Service\Util\FlashBag;
 use http\Header;
 use Twig\Environment;
@@ -38,5 +39,12 @@ abstract class AbstractController
         die();
     }
 
+    protected function checkConnection(): void
+    {
+        if (AuthenticationUtil::isAdminConnected() === false) {
+            FlashBag::getInstance()->addFlash('Veuillez-vous connecter', 'warning');
+            $this->redirectTo('?uri=connexion');
+        }
+    }
 
 }
