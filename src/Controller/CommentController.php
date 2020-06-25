@@ -20,35 +20,6 @@ use Core\Service\Util\FlashBag;
 
 class CommentController extends AbstractController
 {
-    /*public function newComment()
-    {
-        $form = (new Form())
-            ->add('pseudo', new TextType([
-                new NotBlankConstraint(),
-                new MaxLengthTextConstraint(10)
-            ]))
-            ->add('content', new TextAreaType([
-                new NotBlankConstraint(),
-                new MaxLengthTextConstraint()
-            ]))
-            ->add('csrf', new CsrfType(
-                [
-                    new CsrfConstraint()
-                ]
-            ));
-        $form->handleRequest();
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $comments = (new comment())
-                ->setPeudo($form->getData('pseudo'))
-                ->setContnent($form->getData('content'));
-            $commentManager = new CommentManager();
-            $commentManager->newCommentPost($comments);
-            ;
-        }
-
-    }*/
 
     public function listCommentsAction()
     {
@@ -91,6 +62,7 @@ class CommentController extends AbstractController
 
             $commentManager = new CommentManager();
             $commentManager->deReportComment($form->getData('commentId'));
+            FlashBag::getInstance()->addFlash('commentaire dereport', 'success');
 
             $this->redirectTo('?uri=listComments');
         }
@@ -106,12 +78,10 @@ class CommentController extends AbstractController
         $form->handleRequest();
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $commentManager = new CommentManager();
             $commentManager->reportComment($form->getData('reportComment'));
-
-            die('commentaire signaler');
-
+            FlashBag::getInstance()->addFlash('commentaire signaler', 'success');
+            $this->redirectTo('?uri=chapitre&id=' . $_GET['id']);
         }
 
     }

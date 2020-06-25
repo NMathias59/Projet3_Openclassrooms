@@ -21,16 +21,7 @@ use Core\Service\Util\FlashBag;
 
 class PostController extends AbstractController
 {
-    //Pagination des page Acceuil(homepage) et list.html.twig:
-    //------------------------------------------
-    public function ChapitrePageAction()
-    {
-        $ChapterByPage = new PostManager();
-        $post = $ChapterByPage->getPostsByPage($_POST['page'] ?? 1);
-        $this->render('Default/homepage.html.twig');
-    }
-
-    //Afficher les posts sur la pge d'acceuil
+    //Afficher les posts sur la page d'acceuil
     //------------------------------------------
     public function homePageAction()
     {
@@ -201,7 +192,8 @@ class PostController extends AbstractController
                 ->setContent($form->getData('content'));
             $postManager->updatePost($post);
             //var_dump($post);
-            die('post editer');
+            FlashBag::getInstance()->addFlash('post editer', 'success');
+            $this->redirectTo('?uri=chapitre&id=' . $post->getId());
         }
         $this->render('Post/edit.html.twig', [
             'form' => $form, 'post' => $post

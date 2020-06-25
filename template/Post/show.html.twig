@@ -9,7 +9,7 @@
 
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="?uri=homepage">Home</a>
+                <a href="?uri=homepage">Accueil</a>
             </li>
             <li class="breadcrumb-item active">{{ post.title }}</li>
         </ol>
@@ -75,7 +75,7 @@
                                 <h1>{{ comment.createdBy }}</h1>
                                 <p class="mt-1">{{ comment.content }} </p>
                                 <div>
-                                    <form action="?uri=reportComment" method="post">
+                                    <form action="?uri=reportComment&id={{ post.id }}" method="post">
                                         <input name="reportComment" value="{{ comment.id }}" type="hidden">
                                         <button type="submit" class="btn btn-secondary, col-1">Signaler</button>
                                     </form>

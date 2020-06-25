@@ -1,57 +1,98 @@
 {% extends "baseadministration.html.twig" %}
 {% block body %}
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-        <a class="navbar-brand mr-1" href="?uri=administration">Administration :</a>
+<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="?uri=administration">
-            <i class="fas fa-bars"></i>
-        </button>
+    <a class="navbar-brand mr-1" href="index.html">Administration :</a>
+
+    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navbar -->
+    <ul class="navbar-nav ml-auto ml-md-12">
+
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user-circle fa-fw"></i>
+            </a>
 
 
-        <!-- Navbar -->
-        <ul class="navbar-nav ml-auto ml-md-12">
-
-            <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user-circle fa-fw"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="?uri=administration" data-toggle="modal" data-target="#logoutModal">Logout</a>
-                </div>
-            </li>
-        </ul>
-
-    </nav>
-    <div class="card-body">
-        <form method="post" class="col-lg-12 ">
-            <div class="form-group">
-                <label for="post_title">Titre</label>
-                <input value="{{ form.getData('title') }}" name="title" type="text" class="form-control" id="post_title"
-                       placeholder="Titre">
-                {% if form.hasErrors('title') %}
-                    <div class="text-danger">Votre titre n'est pas valide !</div>
-                {% endif %}
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
             </div>
-            <div class="form-group">
-                <label for="post_content">Article</label>
-                <textarea name="content" class="form-control tinymce" id="post_content"
-                          placeholder="Article">{{ form.getData('content') }}</textarea>
-                {% if form.hasErrors('content') %}
-                    <div class="text-danger">Votre titre n'est pas valide !</div>
-                {% endif %}
+        </li>
+    </ul>
+
+</nav>
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="sidebar navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="?uri=administration">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Pages</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                <a class="dropdown-item" href="?uri=chapitresAdmin">Post :</a>
+                <a class="dropdown-item" href="?uri=newPost">New Post :</a>
+                <a class="dropdown-item" href="?uri=listComments">Commentaires :</a>
             </div>
-            {% if form.hasErrors('csrf') %}
-                <div class="text-danger">
-                    Token csrf invalide, veuillez renvoyer le formulaire.
-                </div>
-            {% endif %}
-            <input type="hidden" name="csrf" value="{{ form.getPart('csrf').initToken }}">
-            <button id="btnNP" type="submit" class="btn btn-primary col-lg-4">Poster</button>
-            <a href="?uri=administration" id="btnNP" class="btn btn-danger col-lg-4"> &lt;- Returner vers la liste </a>
-        </form>
-    </div>
-{% endblock %}
+        </li>
+    </ul>
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="?uri=administration">Acceuil</a>
+                </li>
+                <!-- <li class="breadcrumb-item active">Acceuil</li> -->
+            </ol>
+            <div class="card-body">
+                <form method="post" class="col-lg-12 ">
+                    <div class="form-group">
+                        <label for="post_title">Titre</label>
+                        <input value="{{ form.getData('title') }}" name="title" type="text" class="form-control"
+                               id="post_title"
+                               placeholder="Titre">
+                        {% if form.hasErrors('title') %}
+                            <div class="text-danger">Votre titre n'est pas valide !</div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="post_content">Article</label>
+                        <textarea name="content" class="form-control tinymce" id="post_content"
+                                  placeholder="Article">{{ form.getData('content') }}</textarea>
+                        {% if form.hasErrors('content') %}
+                            <div class="text-danger">Votre titre n'est pas valide !</div>
+                        {% endif %}
+                    </div>
+                    {% if form.hasErrors('csrf') %}
+                        <div class="text-danger">
+                            Token csrf invalide, veuillez renvoyer le formulaire.
+                        </div>
+                    {% endif %}
+                    <input type="hidden" name="csrf" value="{{ form.getPart('csrf').initToken }}">
+                    <button id="btnNP" type="submit" class="btn btn-primary col-lg-4">Poster</button>
+                    <a href="?uri=administration" id="btnNP" class="btn btn-danger col-lg-4"> &lt;- Returner vers la
+                        liste </a>
+                </form>
+            </div>
+        </div>
+        {% endblock %}
 
