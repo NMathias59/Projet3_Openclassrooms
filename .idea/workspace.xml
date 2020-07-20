@@ -3,16 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="e7c9eb7f-9e59-4f31-8815-2968fbe6b4f2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ContactController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PostController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/Admin/connection.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Admin/connection.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/Comment/listComments.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Comment/listComments.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/Default/administration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Default/administration.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/Default/homepage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Default/homepage.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/Post/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Post/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/Post/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Post/list.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/Post/listAdmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Post/listAdmin.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/Post/newPost.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Post/newPost.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/Post/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/Post/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/baseadministration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/baseadministration.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/basenofooter.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/template/basenofooter.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -141,6 +141,10 @@
       <workItem from="1591962842528" duration="2068000" />
       <workItem from="1592895019858" duration="2229000" />
       <workItem from="1592914895066" duration="1519000" />
+      <workItem from="1593100657343" duration="189000" />
+      <workItem from="1594214425105" duration="718000" />
+      <workItem from="1594279164330" duration="1052000" />
+      <workItem from="1595232577839" duration="1798000" />
     </task>
     <task id="LOCAL-00001" summary="ajout du formulaire et mise en place de la fonction pour l'envoie de new post a la bdd">
       <created>1563978834055</created>
@@ -205,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592494374652</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="mise en place de plusieur flash bag manquant + correction de fautes d'orthographe">
+      <created>1593100777490</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1593100777491</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
